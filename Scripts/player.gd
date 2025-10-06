@@ -15,6 +15,7 @@ var jump_count : int = 2
 var is_grounded : bool = false
 
 @onready var player_sprite = $AnimatedSprite2D
+@onready var sword_sprite = $Sword/SwordAnim
 @onready var spawn_point = %SpawnPoint
 @onready var particle_trails = $ParticleTrails
 @onready var death_particles = $DeathParticles
@@ -38,7 +39,7 @@ func movement():
 		jump_count = max_jump_count
 		velocity.y = 0
 
-	
+	slash()
 	handle_jumping()
 	
 	# Move Player
@@ -60,6 +61,14 @@ func jump():
 	jump_tween()
 	AudioManager.jump_sfx.play()
 	velocity.y = -jump_force
+
+# Player sword slash
+func slash():
+	if Input.is_action_pressed("Slash"):
+		sword_sprite.set_visible(true)
+		sword_sprite.play("Stab")
+	else:
+		sword_sprite.set_visible(false)
 
 # Handle Player Animations
 func player_animations():
