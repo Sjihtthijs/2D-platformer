@@ -32,10 +32,12 @@ func _process(_delta):
 # <-- Player Movement Code -->
 func movement():
 	# Gravity
-	if !is_on_floor():
+	if !is_on_floor() and !is_on_wall():
 		velocity.y += gravity
-	elif is_on_floor():
+	elif is_on_floor() or is_on_wall():
 		jump_count = max_jump_count
+		velocity.y = 0
+
 	
 	handle_jumping()
 	
@@ -47,7 +49,7 @@ func movement():
 # Handles jumping functionality (double jump or single jump, can be toggled from inspector)
 func handle_jumping():
 	if Input.is_action_just_pressed("Jump"):
-		if is_on_floor() and !double_jump:
+		if (is_on_floor() or is_on_wall()) and !double_jump:
 			jump()
 		elif double_jump and jump_count > 0:
 			jump()

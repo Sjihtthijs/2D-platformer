@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyokfau6kdg5i"]
+
+[ext_resource type="Script" uid="uid://ebnhxbm3lbvj" path="res://Scripts/enemy.gd" id="1_3v02y"]
+[ext_resource type="Texture2D" uid="uid://vp6ltvbb7lvc" path="res://Assets/kenney_new-platformer-pack-1.0/Sprites/Enemies/Default/block_left.png" id="2_v3bsd"]
+[ext_resource type="Texture2D" uid="uid://xwxhhgn2n0ud" path="res://Assets/kenney_new-platformer-pack-1.0/Sprites/Enemies/Default/block_right.png" id="3_rm55w"]
+[ext_resource type="Texture2D" uid="uid://ck4lq3cupnwwn" path="res://Assets/kenney_new-platformer-pack-1.0/Sprites/Enemies/Default/block_idle.png" id="4_kfe4k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iad3j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_v3bsd")
+}],
+"loop": true,
+"name": &"Block_Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rm55w")
+}],
+"loop": true,
+"name": &"Block_Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_kfe4k")
+}],
+"loop": true,
+"name": &"Block_idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8l12b"]
+size = Vector2(64, 64)
+
+[node name="Enemy" type="Node2D"]
+
+[node name="Block_enemy" type="CharacterBody2D" parent="."]
+position = Vector2(50, 50)
+script = ExtResource("1_3v02y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Block_enemy"]
+sprite_frames = SubResource("SpriteFrames_iad3j")
+animation = &"Block_Left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Block_enemy"]
+shape = SubResource("RectangleShape2D_8l12b")

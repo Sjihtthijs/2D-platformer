@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://diavo2dwrylve"]
+[gd_scene load_steps=14 format=3 uid="uid://diavo2dwrylve"]
 
 [ext_resource type="PackedScene" uid="uid://cyti38f0lagf2" path="res://Scenes/Prefabs/LevelFinishDoor.tscn" id="1_7g7g3"]
 [ext_resource type="PackedScene" uid="uid://w7m6tehvvy3g" path="res://Scenes/Prefabs/player.tscn" id="2_xlocl"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dyclcc014dcfu" path="res://Scripts/GameManager.gd" id="6_l8a6n"]
 [ext_resource type="Script" uid="uid://bkbrv4ik8h4ke" path="res://Scripts/GameUI.gd" id="7_hugg7"]
 [ext_resource type="Texture2D" uid="uid://clreg520jah1j" path="res://Assets/platformPack_item008.png" id="8_b34kl"]
+[ext_resource type="PackedScene" uid="uid://dyokfau6kdg5i" path="res://Scenes/Agents/Enemy.tscn" id="9_xlocl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gs0qk"]
 texture = ExtResource("4_28nhg")
@@ -168,3 +169,6 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("5_hcpep")
 theme_override_font_sizes/font_size = 32
 text = "x 3"
+
+[node name="Enemy" parent="." instance=ExtResource("9_xlocl")]
+position = Vector2(51, 175)

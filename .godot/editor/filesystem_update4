@@ -1,0 +1,7 @@
+res://Scenes/Levels/Prototype_Level.tscn
+res://Scripts/player.gd
+res://Scenes/Levels/Level_01.tscn
+res://Scenes/Agents/Enemy.tscn
+res://Scenes/Agents/enemy.gd
+res://Scenes/Prefabs/player.tscn
+res://Scripts/enemy.gd
