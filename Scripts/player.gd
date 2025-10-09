@@ -39,7 +39,7 @@ func movement():
 		jump_count = max_jump_count
 		velocity.y = 0
 
-	slash()
+	handle_slash()
 	handle_jumping()
 	
 	# Move Player
@@ -63,7 +63,7 @@ func jump():
 	velocity.y = -jump_force
 
 # Player sword slash
-func slash():
+func handle_slash():
 	if Input.is_action_pressed("Slash"):
 		sword_sprite.set_visible(true)
 		sword_sprite.play("Stab")
@@ -74,7 +74,7 @@ func slash():
 func player_animations():
 	particle_trails.emitting = false
 	
-	if is_on_floor():
+	if is_on_floor() or is_on_wall():
 		if abs(velocity.x) > 0:
 			particle_trails.emitting = true
 			player_sprite.play("Walk", 1.5)
@@ -87,8 +87,12 @@ func player_animations():
 func flip_player():
 	if velocity.x < 0: 
 		player_sprite.flip_h = true
+		$Sword.position = Vector2(-$Sword.position.x, $Sword.position.y)
+		sword_sprite.flip_h = true
 	elif velocity.x > 0:
 		player_sprite.flip_h = false
+		$Sword.position = Vector2(-$Sword.position.x, $Sword.position.y)
+		sword_sprite.flip_h = false
 
 # Tween Animations
 func death_tween():
@@ -110,6 +114,9 @@ func jump_tween():
 	tween.tween_property(self, "scale", Vector2(0.7, 1.4), 0.1)
 	tween.tween_property(self, "scale", Vector2.ONE, 0.1)
 
+func slash_tween():
+	var tween = create_tween()
+	
 # --------- SIGNALS ---------- #
 
 # Reset the player's position to the current level spawn point if collided with any trap

@@ -53,7 +53,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n4sts"]
 radius = 27.0
-height = 66.0
+height = 68.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvbjh"]
 size = Vector2(58, 69)
@@ -79,13 +79,16 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("4_0ctox")
+}, {
+"duration": 1.0,
+"texture": null
 }],
 "loop": true,
 "name": &"Stab",
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Player", "Sword"]]
 script = ExtResource("1_qt7d6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -141,14 +144,14 @@ scale_amount_curve = SubResource("Curve_m2jh0")
 color_ramp = SubResource("Gradient_3gc37")
 
 [node name="Sword" type="Area2D" parent="." groups=["Sword"]]
+position = Vector2(45, 15)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
-position = Vector2(47.5, 24.5)
+[node name="SwordHitB" type="CollisionShape2D" parent="Sword" groups=["Sword"]]
 shape = SubResource("RectangleShape2D_0ctox")
 
 [node name="SwordAnim" type="AnimatedSprite2D" parent="Sword"]
-position = Vector2(36, 28)
+position = Vector2(-11, 4)
 sprite_frames = SubResource("SpriteFrames_cb7df")
-animation = &"NoStab"
+animation = &"Stab"
 
 [connection signal="body_entered" from="Collision" to="." method="_on_collision_body_entered"]
